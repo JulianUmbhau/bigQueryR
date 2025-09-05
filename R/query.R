@@ -82,7 +82,7 @@ bqr_query <- function(projectId = bqr_get_global_project(),
   }else{
     q <- googleAuthR::gar_api_generator(the_url,
                                         "POST",
-                                        data_parse_function = bigQueryR:::parse_bqr_query,
+                                        data_parse_function = parse_bqr_query,
                                         checkTrailingSlash = FALSE)
     data <- try(q(the_body = body,
                   path_arguments = list(projects = projectId)))
@@ -103,7 +103,7 @@ bqr_query <- function(projectId = bqr_get_global_project(),
                                          path_args = list(projects = projectId,
                                                           queries = jobId),
                                          pars_args = list(pageToken = pageToken),
-                                         data_parse_function = bigQueryR:::parse_bqr_query)
+                                         data_parse_function = parse_bqr_query)
     i <- 1
     while(!is.null(pageToken)){
       message("Page #: ", i)
